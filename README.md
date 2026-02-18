@@ -2,7 +2,7 @@
 
 Bulk evemail sender for EVE Online. Paste in a list of character names, write your mail, and send it off. Useful for alliance pings, corp recruitment, fleet notifications, etc.
 
-Live at **[evemailer.connorjc.io](https://evemailer.connorjc.io)**
+(Hopefully) deployed at **[evemailer.connorjc.io](https://evemailer.connorjc.io)**
 
 ![screenshot](screenshot.png)
 
@@ -21,6 +21,10 @@ Single static page, no backend. Authenticates directly with EVE SSO using the OA
 2. Set the callback URL to wherever you're hosting the page
 3. Replace the `CLIENT_ID` constant at the top of the script in `index.html` with your application's client ID
 4. Serve `index.html` and `mail.webp` from any static host (GitHub Pages, nginx, whatever)
+
+## Disclaimer
+
+This repo is 99% LLM generated. I have reviewed a lot of it myself but use at your own risk, this is just a small tool I slopped out with Claude Code.
 
 ## License
 
