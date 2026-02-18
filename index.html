@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src https://login.eveonline.com https://esi.evetech.net">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https://images.evetech.net; connect-src https://login.eveonline.com https://esi.evetech.net">
   <title>EVEMAILER</title>
   <link rel="icon" type="image/webp" href="mail.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -135,6 +135,13 @@
       align-items: center;
       gap: 0.75rem;
       font-size: 0.85rem;
+    }
+
+    #char-portrait {
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 2px;
+      border: 1px solid var(--border);
     }
 
     #char-name {
@@ -595,6 +602,7 @@
   <header>
     <h1><img src="mail.webp" alt="">EVEMAILER</h1>
     <div id="auth-area">
+      <img id="char-portrait" hidden alt="">
       <span id="char-name" hidden></span>
       <button id="btn-login">Login with EVE SSO</button>
       <button id="btn-logout" hidden>Logout</button>
@@ -1261,6 +1269,7 @@
 
     var UI = {
       init: function() {
+        els.charPortrait = document.getElementById('char-portrait');
         els.charName = document.getElementById('char-name');
         els.btnLogin = document.getElementById('btn-login');
         els.btnLogout = document.getElementById('btn-logout');
@@ -1299,7 +1308,9 @@
         });
       },
 
-      showLoggedIn: function(name) {
+      showLoggedIn: function(name, charId) {
+        els.charPortrait.src = 'https://images.evetech.net/characters/' + charId + '/portrait?size=64';
+        els.charPortrait.hidden = false;
         els.charName.textContent = name;
         els.charName.hidden = false;
         els.btnLogin.hidden = true;
@@ -1308,6 +1319,8 @@
       },
 
       showLoggedOut: function() {
+        els.charPortrait.hidden = true;
+        els.charPortrait.removeAttribute('src');
         els.charName.hidden = true;
         els.btnLogin.hidden = false;
         els.btnLogin.disabled = false;
@@ -1495,7 +1508,7 @@
         UI.showAuthenticating();
         SSO.handleCallback()
           .then(function() {
-            UI.showLoggedIn(SSO.characterName);
+            UI.showLoggedIn(SSO.characterName, SSO.characterId);
           })
           .catch(function(err) {
             UI.showError(err.message);
@@ -1505,7 +1518,7 @@
         UI.showAuthenticating();
         SSO.refreshAccessToken()
           .then(function() {
-            UI.showLoggedIn(SSO.characterName);
+            UI.showLoggedIn(SSO.characterName, SSO.characterId);
           })
           .catch(function(err) {
             UI.showError(err.message || 'Could not restore session.');
