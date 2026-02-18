@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EVE Mailer</title>
+  <title>EVEMAILER</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -107,15 +107,25 @@
     }
 
     header h1 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       font-family: 'Rajdhani', sans-serif;
       font-weight: 700;
       font-size: 1.5rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--text-bright) 60%);
+      background: linear-gradient(135deg, #f0c040 0%, #ffe680 60%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    header h1 img {
+      flex-shrink: 0;
+      height: 1.1em;
+      width: auto;
+      transform: translateY(-0.06em);
     }
 
     #auth-area {
@@ -567,7 +577,7 @@
 </head>
 <body>
   <header>
-    <h1>EVE Mailer</h1>
+    <h1><img src="mail.webp" alt="">EVEMAILER</h1>
     <div id="auth-area">
       <span id="char-name" hidden></span>
       <button id="btn-login">Login with EVE SSO</button>
