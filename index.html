@@ -350,10 +350,9 @@
     }
 
     .template-chip-delete {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      width: 1.6rem;
       background: none;
       border: none;
       border-left: 1px solid var(--border);
@@ -366,10 +365,12 @@
       transition: background 0.15s, color 0.15s;
     }
 
-    .template-chip-delete::before {
-      content: '\00d7';
-      font-size: 1.4rem;
-      line-height: 0;
+    .template-chip-delete svg {
+      width: 60%;
+      height: 60%;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
     }
 
     .template-chip-delete:hover {
@@ -1348,6 +1349,7 @@
 
             var del = document.createElement('button');
             del.className = 'template-chip-delete';
+            del.innerHTML = '<svg viewBox="0 0 12 12"><line x1="2" y1="2" x2="10" y2="10"/><line x1="10" y1="2" x2="2" y2="10"/></svg>';
             del.title = 'Delete template';
             del.addEventListener('click', function(e) {
               e.stopPropagation();
