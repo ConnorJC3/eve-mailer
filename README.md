@@ -4,6 +4,8 @@ Bulk evemail sender for EVE Online. Paste in a list of character names, write yo
 
 Live at **[evemailer.connorjc.io](https://evemailer.connorjc.io)**
 
+![screenshot](screenshot.png)
+
 ## How it works
 
 Single static page, no backend. Authenticates directly with EVE SSO using the OAuth2 PKCE flow and sends mail through ESI. Everything runs in your browser.
