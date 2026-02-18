@@ -353,21 +353,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 1.6rem;
+      aspect-ratio: 1;
       background: none;
       border: none;
       border-left: 1px solid var(--border);
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 0.85rem;
       padding: 0;
-      line-height: 1;
       border-radius: 0;
       text-transform: none;
       letter-spacing: 0;
-      font-family: 'Barlow', sans-serif;
-      font-weight: 400;
       transition: background 0.15s, color 0.15s;
+    }
+
+    .template-chip-delete::before {
+      content: '\00d7';
+      font-size: 1.4rem;
+      line-height: 0;
     }
 
     .template-chip-delete:hover {
@@ -576,8 +578,6 @@
     /* ── Responsive ────────────────────────────────────────────────────── */
     @media (max-width: 640px) {
       header {
-        flex-direction: column;
-        align-items: flex-start;
         padding: 1rem;
       }
       main { padding: 0 1rem 2rem; }
@@ -1348,7 +1348,6 @@
 
             var del = document.createElement('button');
             del.className = 'template-chip-delete';
-            del.textContent = '\u00d7';
             del.title = 'Delete template';
             del.addEventListener('click', function(e) {
               e.stopPropagation();
